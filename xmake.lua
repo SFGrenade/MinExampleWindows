@@ -7,11 +7,9 @@ add_rules( "mode.debug", "mode.release", "mode.releasedbg", "mode.minsizerel" )
 set_languages( "c++20" )
 
 if is_plat( "windows" ) then
+    add_cxflags( "/permissive-" )
     add_cxflags( "/Zc:__cplusplus" )
     add_cxflags( "/Zc:preprocessor" )
-
-    add_cxflags( "-stdlib=libc++" )
-    add_cxflags( "/permissive-" )
 else
 end
 
@@ -43,15 +41,10 @@ target( "CursedModNative" )
     elseif is_plat( "macosx" ) then
         --add_packages( "lodepng" )
     elseif is_plat( "windows" ) then
-        --add_syslinks("Kernel32", "UxTheme", "Dwmapi", "User32", "Shell32", "ucrt", "vcruntime")
         add_syslinks("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
-        --add_defines( "_NO_CRT_STDIO_INLINE" )
-        ---- from https://learn.microsoft.com/en-us/cpp/porting/overview-of-potential-upgrade-issues-visual-cpp?view=msvc-170#libraries
-        --add_syslinks("legacy_stdio_definitions")
     else
     end
 
-    --add_includedirs( "src", { public = true } )
     add_includedirs( "src" )
 
     add_headerfiles( "src/*.h" )

@@ -31,7 +31,7 @@ MKDIR "%ORIGINAL_DIR%\%logFolder%"
 
 CALL :doCommand "00_made_build_logs" "echo we did it" && cd>NUL || Goto :END
 
-CALL :doCommand "01_config" "xmake config -vD --arch=x64 --mode=releasedbg --kind=shared --runtimes=MT --yes --policies=package.precompiled:n" && cd>NUL || Goto :END
+CALL :doCommand "01_config" "xmake config -vD --arch=x64 --mode=releasedbg --kind=shared --runtimes=MD --yes --policies=package.precompiled:n" && cd>NUL || Goto :END
 
 CALL :doCommand "02_build" "xmake build -vD -a" && cd>NUL || Goto :END
 
