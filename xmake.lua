@@ -43,7 +43,7 @@ target( "CursedModNative" )
         --add_packages( "lodepng" )
     elseif is_plat( "windows" ) then
         --add_links("Kernel32", "UxTheme", "Dwmapi", "User32", "Shell32", "ucrt", "vcruntime")
-        add_links("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
+        add_syslinks("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
     else
     end
 
