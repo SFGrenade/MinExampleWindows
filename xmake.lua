@@ -45,6 +45,8 @@ target( "CursedModNative" )
         --add_syslinks("Kernel32", "UxTheme", "Dwmapi", "User32", "Shell32", "ucrt", "vcruntime")
         add_syslinks("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
         --add_defines( "_NO_CRT_STDIO_INLINE" )
+        -- from https://learn.microsoft.com/en-us/cpp/porting/overview-of-potential-upgrade-issues-visual-cpp?view=msvc-170#libraries
+        add_syslinks("legacy_stdio_definitions")
     else
     end
 
