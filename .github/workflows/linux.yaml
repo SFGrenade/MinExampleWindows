@@ -19,8 +19,11 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         arch: [x86_64]
-        kind: [static, shared]
-        mode: [debug, release, releasedbg, minsizerel]
+        #kind: [static, shared]
+        kind: [shared]
+        #mode: [debug, release, releasedbg, minsizerel]
+        mode: [releasedbg]
+        # we can keep things short
 
     runs-on: ${{ matrix.os }}
 

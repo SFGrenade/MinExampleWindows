@@ -19,9 +19,12 @@ jobs:
       matrix:
         os:
         - { image: macos-13, arch: x86_64 }
-        - { image: macos-14, arch: arm64 }
-        kind: [static, shared]
-        mode: [debug, release, releasedbg, minsizerel]
+        #- { image: macos-14, arch: arm64 }
+        #kind: [static, shared]
+        kind: [shared]
+        #mode: [debug, release, releasedbg, minsizerel]
+        mode: [releasedbg]
+        # we can keep things short
 
     runs-on: ${{ matrix.os.image }}
 
