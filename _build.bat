@@ -24,6 +24,8 @@ EXIT /B %ERRORLEVEL%
 
 :main
 
+RMDIR /S /Q "%ORIGINAL_DIR%\.xmake"
+RMDIR /S /Q "%ORIGINAL_DIR%\build"
 RMDIR /S /Q "%ORIGINAL_DIR%\%logFolder%"
 RMDIR /S /Q "%ORIGINAL_DIR%\_dest"
 

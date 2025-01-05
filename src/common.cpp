@@ -26,7 +26,7 @@ void printInFile( char const *msg ) {
 }
 
 #if defined( CM_Windows )
-extern BOOL WINAPI DllMain( HINSTANCE const, DWORD const callReason, LPVOID const ) {
+BOOL WINAPI DllMain( HINSTANCE const, DWORD const callReason, LPVOID const ) {
   switch( callReason ) {
     case DLL_PROCESS_ATTACH:
       break;
@@ -39,7 +39,7 @@ extern BOOL WINAPI DllMain( HINSTANCE const, DWORD const callReason, LPVOID cons
   }
   return TRUE;
 }
-extern BOOL __stdcall _DllMainCRTStartup( HINSTANCE const dllModHandle, DWORD const callReason, LPVOID const reserved ) {
-  return DllMain( dllModHandle, callReason, reserved );
-}
+// BOOL WINAPI _DllMainCRTStartup( HINSTANCE const dllModHandle, DWORD const callReason, LPVOID const reserved ) {
+//   return DllMain( dllModHandle, callReason, reserved );
+// }
 #endif

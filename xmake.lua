@@ -10,6 +10,8 @@ if is_plat( "windows" ) then
     add_cxflags( "/permissive-" )
     add_cxflags( "/Zc:__cplusplus" )
     add_cxflags( "/Zc:preprocessor" )
+
+    add_defines("_CRT_SECURE_NO_WARNINGS")
 else
 end
 
@@ -41,7 +43,7 @@ target( "CursedModNative" )
     elseif is_plat( "macosx" ) then
         --add_packages( "lodepng" )
     elseif is_plat( "windows" ) then
-        add_syslinks("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
+        add_syslinks( "User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32" )
     else
     end
 

@@ -19,7 +19,7 @@ enum CUSTOM_DWMWINDOWATTRIBUTE : WORD {
 HWND unityWindowHandle = 0;
 NOTIFYICONDATAA notifyData;
 
-extern bool Init() {
+bool Init() {
   openFile( true );
   printInFile( "Initializing library..." );
 
@@ -48,7 +48,7 @@ extern bool Init() {
   return true;
 }
 
-extern bool Deinit() {
+bool Deinit() {
   printInFile( "Deinitializing library..." );
 
   closeFile();
@@ -56,7 +56,7 @@ extern bool Deinit() {
   return true;
 }
 
-extern bool SetWindowDarkMode( const bool darkMode ) {
+bool SetWindowDarkMode( const bool darkMode ) {
   printInFile( "SetWindowDarkMode(darkMode: %d) - Windows", darkMode );
 
   printInFile( "Set window theme..." );
@@ -107,7 +107,7 @@ extern bool SetWindowDarkMode( const bool darkMode ) {
   return immersiveDarkModeResult || immersiveDarkMode20h1Result || borderColorResult || captionColorResult || windowThemeResult || dwmColorChangedResult;
 }
 
-extern bool SendShellNotification( char const* title, char const* message ) {
+bool SendShellNotification( char const* title, char const* message ) {
   printInFile( "SendShellNotification(title: '%ls', message: '%ls') - Windows", title, message );
 
   memset( notifyData.szInfo, 0, sizeof( notifyData.szInfo ) );
@@ -126,7 +126,7 @@ extern bool SendShellNotification( char const* title, char const* message ) {
   return notifyAddResult;
 }
 
-extern bool RemoveShellNotification() {
+bool RemoveShellNotification() {
   printInFile( "RemoveShellNotification - Windows" );
 
   bool notifyDeleteResult = Shell_NotifyIconA( NIM_DELETE, &notifyData );
@@ -134,7 +134,7 @@ extern bool RemoveShellNotification() {
   return notifyDeleteResult;
 }
 
-extern bool DoFunStuff() {
+bool DoFunStuff() {
   printInFile( "DoFunStuff - Windows" );
 
   bool ret = true;
