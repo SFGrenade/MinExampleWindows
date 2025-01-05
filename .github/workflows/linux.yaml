@@ -91,15 +91,15 @@ jobs:
       uses: ihiroky/archive-action@v1
       with:
         root_dir: dest
-        file_path: ${{ env.OUTPUT_FILE }}
+        file_path: ${{ env.OUTPUT_FILE }}.tar.gz
         verbose: true
 
     - name: Compute checksum of archive
       run: |
         if [ "$RUNNER_OS" == "Windows" ]; then
-          sha256sum -b "$OUTPUT_FILE" > "$OUTPUT_FILE.sha256"
+          sha256sum -b "$OUTPUT_FILE.tar.gz" > "$OUTPUT_FILE.tar.gz.sha256"
         else
-          shasum -a 256 -b "$OUTPUT_FILE" > "$OUTPUT_FILE.sha256"
+          shasum -a 256 -b "$OUTPUT_FILE.tar.gz" > "$OUTPUT_FILE.tar.gz.sha256"
         fi
       shell: bash
 
@@ -109,8 +109,8 @@ jobs:
       if: ${{ startsWith(github.event.ref, 'refs/tags/') }}
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ env.OUTPUT_FILE }}
-        asset_name: ${{ env.OUTPUT_FILE }}
+        file: ${{ env.OUTPUT_FILE }}.tar.gz
+        asset_name: ${{ env.OUTPUT_FILE }}.tar.gz
         tag: ${{ github.ref }}
         overwrite: true
 
@@ -119,7 +119,7 @@ jobs:
       if: ${{ startsWith(github.event.ref, 'refs/tags/') }}
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ env.OUTPUT_FILE }}.sha256
-        asset_name: ${{ env.OUTPUT_FILE }}.sha256
+        file: ${{ env.OUTPUT_FILE }}.tar.gz.sha256
+        asset_name: ${{ env.OUTPUT_FILE }}.tar.gz.sha256
         tag: ${{ github.ref }}
         overwrite: true
