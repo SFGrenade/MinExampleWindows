@@ -44,8 +44,6 @@ target( "CursedModNative" )
     elseif is_plat( "windows" ) then
         --add_links("Kernel32", "UxTheme", "Dwmapi", "User32", "Shell32", "ucrt", "vcruntime")
         add_links("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
-        -- hardcode this ig
-        add_cxflags("/LD")
     else
     end
 
