@@ -18,13 +18,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest]
-        #arch: [x64, x86, arm64]
-        arch: [x64]
-        #kind: [static, shared]
-        kind: [shared]
+        arch: [x64, x86, arm64]
+        kind: [static, shared]
         runtimes: [MT, MTd, MD, MDd, c++_static, c++_shared, stdc++_static, stdc++_shared, gnustl_static, gnustl_shared, stlport_static, stlport_shared]
-        #mode: [debug, release, releasedbg, minsizerel]
-        mode: [releasedbg]
+        mode: [debug, release, releasedbg, minsizerel]
 
     runs-on: ${{ matrix.os }}
 
@@ -45,11 +42,7 @@ jobs:
 
     - name: Set OUTPUT_FILE variable
       run: |
-        if [ "$RUNNER_OS" == "Windows" ]; then
-          echo "OUTPUT_FILE=${{ matrix.os }}_${{ matrix.arch }}_${{ matrix.kind }}_${{ matrix.mode }}_${{ env.VS_RUNTIME_STRING }}" >> $GITHUB_ENV
-        else
-          echo "OUTPUT_FILE=${{ matrix.os }}_${{ matrix.arch }}_${{ matrix.kind }}_${{ matrix.mode }}" >> $GITHUB_ENV
-        fi
+        echo "OUTPUT_FILE=${{ matrix.os }}_${{ matrix.arch }}_${{ matrix.kind }}_${{ matrix.mode }}_${{ matrix.runtimes }}" >> $GITHUB_ENV
       shell: bash
 
     # Force xmake to a specific folder (for cache)
@@ -75,7 +68,7 @@ jobs:
       run: xmake repo --update -vD
 
     - name: Configure xmake and install dependencies
-      run: xmake config -vD --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --kind=${{ matrix.kind }} --runtimes=${{ env.VS_RUNTIME_STRING }} --yes --policies=package.precompiled:n
+      run: xmake config -vD --arch=${{ matrix.arch }} --mode=${{ matrix.mode }} --kind=${{ matrix.kind }} --runtimes=${{ matrix.runtimes }} --yes --policies=package.precompiled:n
 
     - name: Build all targets
       run: xmake build -vD -a
