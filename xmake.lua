@@ -10,6 +10,7 @@ if is_plat( "windows" ) then
     add_cxflags( "/Zc:__cplusplus" )
     add_cxflags( "/Zc:preprocessor" )
 
+    add_cxflags( "-stdlib=libc++" )
     add_cxflags( "/permissive-" )
 else
 end
@@ -47,7 +48,6 @@ target( "CursedModNative" )
         --add_defines( "_NO_CRT_STDIO_INLINE" )
         ---- from https://learn.microsoft.com/en-us/cpp/porting/overview-of-potential-upgrade-issues-visual-cpp?view=msvc-170#libraries
         --add_syslinks("legacy_stdio_definitions")
-        add_ldflags("/$(runtimes)")
     else
     end
 
