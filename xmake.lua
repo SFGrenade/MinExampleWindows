@@ -44,6 +44,7 @@ target( "CursedModNative" )
     elseif is_plat( "windows" ) then
         --add_links("Kernel32", "UxTheme", "Dwmapi", "User32", "Shell32", "ucrt", "vcruntime")
         add_syslinks("User32", "Dwmapi", "UxTheme", "Shell32", "Kernel32")
+        add_defines( "_NO_CRT_STDIO_INLINE" )
     else
     end
 
