@@ -20,7 +20,7 @@ jobs:
         os: [ubuntu-latest]
         arch: [x86_64]
         kind: [static, shared]
-        runtimes: [c++_static, c++_shared, stdc++_static, stdc++_shared, gnustl_static, gnustl_shared, stlport_static, stlport_shared]
+        runtimes: [c++_static, c++_shared, stdc++_static, stdc++_shared]
         mode: [debug, release, releasedbg, minsizerel]
         # we can keep things short
 
@@ -29,7 +29,7 @@ jobs:
     steps:
     - name: Get current date as package key
       id: cache_key
-      run: echo "key=$(date +'%W')_${{ matrix.os }}_${{ matrix.arch }}_${{ matrix.kind }}_${{ matrix.mode }}" >> $GITHUB_OUTPUT
+      run: echo "key=$(date +'%W')_${{ matrix.os }}_${{ matrix.arch }}_${{ matrix.kind }}_${{ matrix.mode }}_${{ matrix.runtimes }}" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Set OUTPUT_FILE variable

@@ -21,7 +21,7 @@ jobs:
         - { image: macos-13, arch: x86_64 }
         - { image: macos-14, arch: arm64 }
         kind: [static, shared]
-        runtimes: [c++_static, c++_shared, stdc++_static, stdc++_shared, gnustl_static, gnustl_shared, stlport_static, stlport_shared]
+        runtimes: [c++_static, c++_shared]
         mode: [debug, release, releasedbg, minsizerel]
         # we can keep things short
 
@@ -30,7 +30,7 @@ jobs:
     steps:
     - name: Get current date as package key
       id: cache_key
-      run: echo "key=$(date +'%W')_${{ matrix.os.image }}_${{ matrix.os.arch }}_${{ matrix.kind }}_${{ matrix.mode }}" >> $GITHUB_OUTPUT
+      run: echo "key=$(date +'%W')_${{ matrix.os.image }}_${{ matrix.os.arch }}_${{ matrix.kind }}_${{ matrix.mode }}_${{ matrix.runtimes }}" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Set OUTPUT_FILE variable
