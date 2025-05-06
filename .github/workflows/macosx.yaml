@@ -78,7 +78,7 @@ jobs:
     #    xmake run -vD Settings-Interface-Test
 
     - name: Install
-      run: xmake install -vDo dest/ --group=LIBS
+      run: xmake install -vDo dest/ --all
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
