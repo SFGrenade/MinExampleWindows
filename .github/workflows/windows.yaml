@@ -18,10 +18,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest]
-        #arch: [x64, x86, arm64]
-        arch: [x64, x86]
+        #arch: [x64, x86]
+        arch: [x64, x86, arm64]
         kind: [static, shared]
-        runtimes: [MT, MTd, MD, MDd, c++_static, c++_shared, stdc++_static, stdc++_shared, gnustl_static, gnustl_shared, stlport_static, stlport_shared]
+        runtimes: [MT, MTd, MD, MDd]
         mode: [debug, release, releasedbg, minsizerel]
 
     runs-on: ${{ matrix.os }}
