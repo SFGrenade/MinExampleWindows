@@ -8,7 +8,6 @@ package("sndfilter")
     add_includedirs("src")
 
     on_install(function(package)
-        os.cd("sndfilter")
         os.cp(path.join(package:scriptdir(), "port", "xmake.lua"), "xmake.lua")
         import("package.tools.xmake").install(package)
     end)
