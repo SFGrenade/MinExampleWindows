@@ -8,7 +8,17 @@ package("sndfilter")
     add_includedirs("src")
 
     on_install(function(package)
-        os.cp(path.join(package:scriptdir(), "port", "xmake.lua"), "xmake.lua")
+        io.writefile("xmake.lua", [[
+            add_rules("mode.debug", "mode.release")
+            set_languages("c14")
+            target("sndfilter")
+                set_kind("$(kind)")
+                set_encodings("utf-8")
+                add_includedirs("src")
+                add_headerfiles("src/(*.h)")
+                add_files("src/*.c")
+                remove_files("src/main.c")
+        ]])
         import("package.tools.xmake").install(package)
     end)
 
