@@ -17,6 +17,8 @@ if is_plat( "windows" ) then
 else
 end
 
+includes("deps")
+
 -- maybe this helps for the ci?
 set_policy( "build.across_targets_in_parallel", false )
 
