@@ -14,5 +14,5 @@ package("sndfilter")
     end)
 
     on_test(function(package)
-        assert(package:has_cfuncs("sf_snd_new", {includes = "snd.h"})
+        assert(package:has_cfuncs("sf_snd_new", {includes = "snd.h"}))
     end)
