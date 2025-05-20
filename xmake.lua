@@ -20,10 +20,7 @@ end
 -- maybe this helps for the ci?
 set_policy( "build.across_targets_in_parallel", false )
 
-add_requires( "libsdl2" )
-add_requires( "libsdl2_image" )
-add_requires( "libsdl2_mixer" )
-add_requires( "libsdl2_ttf" )
+add_requires( "sndfilter" )
 
 --add_requireconfs( "**", "*.**", { system = false } )
 add_requireconfs( "*", { configs = { shared = get_config( "kind" ) == "shared" } } )
@@ -34,10 +31,7 @@ target( "CursedModNative" )
     set_default( true )
     set_group( "EXES" )
 
-    add_packages( "libsdl2" )
-    add_packages( "libsdl2_image" )
-    add_packages( "libsdl2_mixer" )
-    add_packages( "libsdl2_ttf" )
+    add_packages( "sndfilter" )
 
     add_includedirs( "src" )
 
